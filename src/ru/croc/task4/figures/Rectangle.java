@@ -1,6 +1,6 @@
 package ru.croc.task4.figures;
 
-import ru.croc.Task3.objs.Point;
+import ru.croc.task3.objs.Point;
 
 // Describing a rectangle on a plane
 public class Rectangle extends Figure {

@@ -1,6 +1,6 @@
 package ru.croc.task4;
 
-import ru.croc.Task3.objs.Point;
+import ru.croc.task3.objs.Point;
 import ru.croc.task4.figures.Figure;
 import ru.croc.task4.figures.Rectangle;
 import ru.croc.task4.figures.Circle;

@@ -1,4 +1,4 @@
-package ru.croc.Task3.objs;
+package ru.croc.task3.objs;
 
 import java.util.Objects;
 

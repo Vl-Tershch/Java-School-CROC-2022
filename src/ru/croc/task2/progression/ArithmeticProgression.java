@@ -1,4 +1,4 @@
-package ru.croc.Task2.progression;
+package ru.croc.task2.progression;
 
 public class ArithmeticProgression {
 

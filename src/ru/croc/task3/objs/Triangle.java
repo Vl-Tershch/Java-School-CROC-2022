@@ -1,4 +1,4 @@
-package ru.croc.Task3.objs;
+package ru.croc.task3.objs;
 
 // Describing a triangle on a plane
 public class Triangle {

@@ -1,6 +1,6 @@
 package ru.croc.task4.figures;
 
-import ru.croc.Task3.objs.Point;
+import ru.croc.task3.objs.Point;
 
 // Describing a circle on a plane
 public class Circle extends Figure {

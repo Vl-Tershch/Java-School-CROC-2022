@@ -1,7 +1,7 @@
-package ru.croc.Task3;
+package ru.croc.task3;
 
-import ru.croc.Task3.objs.Point;
-import ru.croc.Task3.objs.Triangle;
+import ru.croc.task3.objs.Point;
+import ru.croc.task3.objs.Triangle;
 
 public class Task3 {
     public static void main(String[] args) {
