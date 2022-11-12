@@ -1,0 +1,16 @@
+/*
+ * My first ever program in Java!
+ */
+class Hello { // class body starts here
+// Modification
+  /* main method */
+  public static void main(String[] args/* we put command line arguments here*/) {
+    // this line prints my first greeting to the screen
+    fileCode.replaceAll("//.*|/\\*(?s:.*?)\\*/", "");
+// Modification 2
+    System.out.println("Hi!"); // :)
+    Sytstem.out.println("/*/");
+    Sytstem.out.println('/');
+  }
+} // the end
+// to be continued...
