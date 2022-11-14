@@ -8,8 +8,13 @@ import java.util.ArrayList;
 // Class for removing comments in Java
 public class CommentRemover {
 
-    // Deleting comments from a String
-    public String removeJavaCommentsString(String fileCode) {
+    // Deleting comments from a String by regex
+    public static String removeJavaCommentsStringRegex(String fileCode) {
+        return fileCode.replaceAll("//.*|/\\*(?s:.*?)\\*/", "");
+    }
+
+    // Deleting comments from a String by string rebuild
+    public static String removeJavaCommentsString(String fileCode) {
         ArrayList<String> result = new ArrayList<>();
         String[] fileCodesString = fileCode.split("\n");
         StringBuilder rezString = new StringBuilder();
@@ -57,7 +62,7 @@ public class CommentRemover {
     }
 
     // Deleting comments from a file
-    public String removeJavaCommentsFile(String fileName) throws IOException {
+    public static String removeJavaCommentsFile(String fileName) throws IOException {
         String allText = null;
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName))) {
             StringBuilder stringBuilder = new StringBuilder();
