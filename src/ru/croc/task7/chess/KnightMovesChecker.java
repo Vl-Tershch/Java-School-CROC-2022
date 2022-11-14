@@ -18,8 +18,8 @@ public class KnightMovesChecker {
         if (chessPosition1.equals(chessPosition2)) {
             return true;
         } else {
-            int newX = Math.abs(((int)chessPosition1.getX() - 97) - ((int)chessPosition2.getX() - 97));
-            int newY = Math.abs(((int)chessPosition1.getY() - 49) - ((int)chessPosition2.getY() - 49));
+            int newX = Math.abs((chessPosition1.getX() - chessPosition2.getX()));
+            int newY = Math.abs((chessPosition1.getY() - chessPosition2.getY()));
             return (newX == 2 && newY == 1) || (newX == 1 && newY == 2);
         }
     }

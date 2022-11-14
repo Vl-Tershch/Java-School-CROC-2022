@@ -14,26 +14,6 @@ public class Task6 {
         }
         System.out.println("-------");
 
-        System.out.println("Output after deleting comments from a string!\n");
-        String codeFirst = "/*\n" +
-                " * My first ever program in Java!\n" +
-                " */\n" +
-                "class Hello { // class body starts here\n" +
-                "// Modification\n" +
-                "  /* main method */\n" +
-                "  public static void main(String[] args/* we put command line arguments here*/) {\n" +
-                "    // this line prints my first greeting to the screen\n" +
-                "    fileCode.replaceAll(\"//.*|/\\\\*(?s:.*?)\\\\*/\", \"\");\n" +
-                "// Modification 2\n" +
-                "    System.out.println(\"Hi!\"); // :)\n" +
-                "    Sytstem.out.println(\"/*/\");\n" +
-                "    Sytstem.out.println('/');\n" +
-                "  }\n" +
-                "} // the end\n" +
-                "// to be continued...";
-        System.out.println(CommentRemover.removeJavaCommentsString(codeFirst));
-        System.out.println("-------");
-
         System.out.println("Output after deleting comments from a string by Regex!");
         String codeSecond = "/*\n" +
                 " * My first ever program in Java!\n" +
