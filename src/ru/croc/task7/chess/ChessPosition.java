@@ -1,6 +1,5 @@
 package ru.croc.task7.chess;
 
-import ru.croc.task7.exceptions.IllegalMoveException;
 import ru.croc.task7.exceptions.IllegalPositionException;
 import java.util.Objects;
 
@@ -9,7 +8,7 @@ public class ChessPosition {
     private char x;
     private char y;
 
-    public ChessPosition(char x, char y) throws IllegalArgumentException {
+    public ChessPosition(char x, char y) {
         if (!(checkX(x) && checkY(y))) {
             throw new IllegalPositionException(x, y);
         }
@@ -17,31 +16,11 @@ public class ChessPosition {
         this.y = y;
     }
 
-    public static ChessPosition parse(String position) throws IllegalArgumentException {
+    public static ChessPosition parse(String position) {
         if (position.length() < 2) {
             throw new IllegalPositionException(position.charAt(0));
         }
         return new ChessPosition(position.charAt(0), position.charAt(1));
-    }
-
-    // Modulation of the movement of the figure
-    public static void figureMakeMoves(ChessPosition[] allPositions) throws IllegalMoveException {
-        for (int i = 0; i < allPositions.length - 1; i++) {
-            if (!figureCanMove(allPositions[i], allPositions[i + 1])) {
-                throw new IllegalMoveException(allPositions[i].toString(), allPositions[i + 1].toString());
-            }
-        }
-    }
-
-    // Checking the possibility of the move of the figure
-    public static boolean figureCanMove(ChessPosition chessPosition1, ChessPosition chessPosition2) {
-        if (chessPosition1.equals(chessPosition2)) {
-            return true;
-        } else {
-            int newX = Math.abs(((int)chessPosition1.getX() - 97) - ((int)chessPosition2.getX() - 97));
-            int newY = Math.abs(((int)chessPosition1.getY() - 49) - ((int)chessPosition2.getY() - 49));
-            return (newX == 2 && newY == 1) || (newX == 1 && newY == 2);
-        }
     }
 
     private boolean checkX(char x) {
@@ -82,9 +61,8 @@ public class ChessPosition {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ChessPosition that = (ChessPosition) o;
-        return getX() == that.x && getY() == that.y;
+        if (!(o instanceof ChessPosition position)) return false;
+        return getX() == position.x && getY() == position.y;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package ru.croc.task7;
 
 import ru.croc.task7.chess.ChessPosition;
+import ru.croc.task7.chess.KnightMovesChecker;
 import ru.croc.task7.exceptions.IllegalMoveException;
 import ru.croc.task7.exceptions.IllegalPositionException;
 
@@ -11,8 +12,7 @@ public class Task7 {
             for (int i = 0; i < args.length; i++) {
                 positions[i] = ChessPosition.parse(args[i]);
             }
-            ChessPosition.figureMakeMoves(positions);
-            System.out.println("OK");
+            KnightMovesChecker.knightCanMakeMoves(positions);
 
         } catch (IllegalPositionException | IllegalMoveException e) {
             System.out.println(e.getMessage());

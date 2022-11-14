@@ -7,6 +7,6 @@ public class IllegalPositionException extends RuntimeException {
     }
 
     public IllegalPositionException(char cord) {
-        super("Error in coordinate: " + cord);
+        super("Incorrect chessboard position! Error in coordinate: " + cord);
     }
 }
