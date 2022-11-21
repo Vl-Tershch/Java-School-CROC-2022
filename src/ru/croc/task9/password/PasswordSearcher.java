@@ -30,13 +30,13 @@ public class PasswordSearcher {
             long numStart = getNumberOfVariants() / getNumberOfThreads() * i;
             long numEnd = (long) (numStart + Math.ceil(getNumberOfVariants() / getNumberOfThreads()));
             futureList.add(threadPool.submit(() -> {
+                if (Thread.interrupted()) {
+                    throw new InterruptedException();
+                }
                 String curPassword = null;
                 for (long j = numStart; j < numEnd; j++) {
                     curPassword = StringsManipulation.getPasswordFromNumber(j, getPasswordConfig());
                     if (HashManipulation.hashPassword(curPassword).equals(getHashString())) {
-                        if (Thread.interrupted()) {
-                            throw new InterruptedException();
-                        }
                         break;
                     }
                 }
