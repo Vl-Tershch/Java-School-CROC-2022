@@ -4,6 +4,7 @@ import java.util.*;
 import java.util.function.Function;
 import static java.util.stream.Collectors.*;
 
+// Deleting forbidden words
 public class CanDeleteHateComments implements BlackListFilter{
     @Override
     public void filterComments(List<String> comments, Set<String> blackList) {
@@ -20,7 +21,7 @@ public class CanDeleteHateComments implements BlackListFilter{
             }
 
             // Rebuilt the string
-            StringBuilder refreshComment = new StringBuilder("");
+            StringBuilder refreshComment = new StringBuilder();
             for (String commentWord : commentWords) {
                 if (currentWords.containsKey(commentWord)) {
                     refreshComment.append(commentWord);

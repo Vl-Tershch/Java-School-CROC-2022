@@ -2,7 +2,6 @@ package ru.croc.task12;
 
 import ru.croc.task12.filter.CanDeleteHateComments;
 import ru.croc.task12.filter.CanReplaceHateComments;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;

@@ -1,16 +1,10 @@
 package ru.croc.task12.filter;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
-import java.util.function.Function;
 
-import static java.util.stream.Collectors.counting;
-import static java.util.stream.Collectors.groupingBy;
-
+// Replacing forbidden words with asterisks
 public class CanReplaceHateComments implements BlackListFilter{
-
     @Override
     public void filterComments(List<String> comments, Set<String> blackList) {
         int ind = 0;
@@ -24,7 +18,7 @@ public class CanReplaceHateComments implements BlackListFilter{
             }
 
             // Rebuilt the string
-            StringBuilder refreshComment = new StringBuilder("");
+            StringBuilder refreshComment = new StringBuilder();
             for (String commentWord : commentWords) {
                 refreshComment.append(commentWord);
                 refreshComment.append(' ');
