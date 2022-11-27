@@ -13,6 +13,7 @@ public class PasswordSearcher {
     private final String hashString;
     private final long numberOfVariants;
     private final PasswordConfig passwordConfig;
+    private volatile boolean flagIsFounded = false;
 
     public PasswordSearcher(int numberOfThreads, String hashString, PasswordConfig pass) {
         this.numberOfThreads = numberOfThreads;
@@ -30,13 +31,14 @@ public class PasswordSearcher {
             long numStart = getNumberOfVariants() / getNumberOfThreads() * i;
             long numEnd = (long) (numStart + Math.ceil(getNumberOfVariants() / getNumberOfThreads()));
             futureList.add(threadPool.submit(() -> {
-                if (Thread.interrupted()) {
+                if (flagIsFounded) {
                     throw new InterruptedException();
                 }
                 String curPassword = null;
                 for (long j = numStart; j < numEnd; j++) {
                     curPassword = StringsManipulation.getPasswordFromNumber(j, getPasswordConfig());
                     if (HashManipulation.hashPassword(curPassword).equals(getHashString())) {
+                        flagIsFounded = true;
                         break;
                     }
                 }
@@ -56,7 +58,6 @@ public class PasswordSearcher {
                 }
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
-                break;
             }
         }
         return null;
