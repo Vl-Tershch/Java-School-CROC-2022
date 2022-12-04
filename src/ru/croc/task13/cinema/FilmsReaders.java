@@ -2,7 +2,7 @@ package ru.croc.task13.cinema;
 
 import java.util.List;
 
-public interface FilmsReaders<T> {
+public interface FilmsReaders<T, M> {
     /**
      * From the given file extract data
      *
@@ -21,5 +21,5 @@ public interface FilmsReaders<T> {
      * From the given file extract all string and return array with viewed films.
      *
      */
-    List<T> viewedFilms(String fileViews);
+    List<M> viewedFilms(String fileViews);
 }

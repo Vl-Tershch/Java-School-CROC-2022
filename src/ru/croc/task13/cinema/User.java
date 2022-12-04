@@ -1,13 +1,14 @@
 package ru.croc.task13.cinema;
 
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 // Users in our cinema
 public class User {
     private int userId;
-    private Set<Integer> filmViews;
+    private List<Integer> filmViews;
 
-    public User(int userId, Set<Integer> filmViews) {
+    public User(int userId, List<Integer> filmViews) {
         this.userId = userId;
         this.filmViews = filmViews;
     }
@@ -20,11 +21,11 @@ public class User {
         this.userId = userId;
     }
 
-    public Set<Integer> getFilmViews() {
-        return filmViews;
+    public List<Integer> getFilmViews() {
+        return new ArrayList<>(this.filmViews);
     }
 
-    public void setFilmViews(Set<Integer> filmViews) {
+    public void setFilmViews(List<Integer> filmViews) {
         this.filmViews = filmViews;
     }
 

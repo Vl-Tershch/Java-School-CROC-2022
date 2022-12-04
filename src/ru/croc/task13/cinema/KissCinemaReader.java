@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 // Special reader of data for cinema
-public class KissCinemaReader implements FilmsReaders {
+public class KissCinemaReader implements FilmsReaders<Film, User> {
     @Override
     public String extractData(String fileName) {
         String allText = null;
@@ -49,7 +49,7 @@ public class KissCinemaReader implements FilmsReaders {
         int ind = 0;
         for (String curLine : lines) {
             String[] newViews = curLine.split(",");
-            allUsers.add(new User(ind, Arrays.stream(newViews).map(Integer::valueOf).collect(Collectors.toSet())));
+            allUsers.add(new User(ind, Arrays.stream(newViews).map(Integer::valueOf).collect(Collectors.toList())));
             ind += 1;
         }
         return allUsers;

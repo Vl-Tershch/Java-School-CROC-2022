@@ -4,17 +4,12 @@ import java.util.*;
 
 // Realization of our cinema
 public class KissCinema {
-    private String filmsFile;
-    private String filmsViewsData;
     private List<Film> films;
     private List<User> users;
 
-    public KissCinema(String filmsFile, String filmsViewsData) {
-        this.filmsFile = filmsFile;
-        this.filmsViewsData = filmsViewsData;
-        KissCinemaReader kissCinemaReader = new KissCinemaReader();
-        this.films = kissCinemaReader.cinemaFilms(filmsFile);
-        this.users = kissCinemaReader.viewedFilms(filmsViewsData);
+    public KissCinema(List<Film> films, List<User> users) {
+        this.films = films;
+        this.users = users;
     }
 
     // Recommendation searcher
@@ -28,10 +23,12 @@ public class KissCinema {
         int repeatedFilms = user.getFilmViews().size() / 2;
         for (User u : getUsers()) {
             int repeatedFilmsUser = 0;
+            List<Integer> repeatedFilmsInds = new ArrayList<>();
             if (u.getUserId() != user.getUserId()) {
                 for (Integer film : u.getFilmViews()) {
-                    if (user.getFilmViews().contains(film)) {
+                    if (user.getFilmViews().contains(film) && !(repeatedFilmsInds.contains(film))) {
                         repeatedFilmsUser += 1;
+                        repeatedFilmsInds.add(film);
                     }
                 }
                 if (repeatedFilms <= repeatedFilmsUser) {
@@ -45,22 +42,6 @@ public class KissCinema {
             }
         }
         return Collections.max(countUniqueMovies.entrySet(), Comparator.comparingInt(Map.Entry::getValue)).getKey();
-    }
-
-    public String getFilmsFile() {
-        return filmsFile;
-    }
-
-    public void setFilmsFile(String filmsFile) {
-        this.filmsFile = filmsFile;
-    }
-
-    public String getFilmsViewsData() {
-        return filmsViewsData;
-    }
-
-    public void setFilmsViewsData(String filmsViewsData) {
-        this.filmsViewsData = filmsViewsData;
     }
 
     public List<Film> getFilms() {
