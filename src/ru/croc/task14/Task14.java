@@ -39,20 +39,20 @@ public class Task14 {
         };
 
         System.out.println("---------------DELETING HATE COMMENTS----------------");
-        System.out.println("[1] Comments before deleting ban words:");
+        System.out.println("[1] Comments before deleting strings with ban words:");
         for (String str : commentsDelList) {
             System.out.println(str);
         }
         CanDeleteHateComments canDeleteHateComments = new CanDeleteHateComments();
         List<String> firstDelRezults = canDeleteHateComments.deleteHateComments(commentsDelList, animalsBanwordsSet);
-        System.out.println("\n[2] Comments after deleting ban words:");
+        System.out.println("\n[2] Comments after deleting strings with ban words:");
         for (String str : firstDelRezults) {
             System.out.println(str);
         }
         System.out.println("\n");
 
         System.out.println("---------------DELETING COMMENTS CONTAINING CHAR '!'----------------");
-        System.out.println("[1] Comments before deleting:");
+        System.out.println("[1] Comments before deleting strings with '!' char:");
         for (String str : commentsDelList) {
             System.out.println(str);
         }
@@ -60,7 +60,7 @@ public class Task14 {
         Predicate<String> containsLetterA = str -> str.contains("!");
         BlackListFilter<String> blackListFilter = new BlackListFilter<>() {};
         List<String> secondDelRezults = (List<String>) blackListFilter.filterComments(commentsDelList, containsLetterA);
-        System.out.println("\n[2] Comments after deleting ban words:");
+        System.out.println("\n[2] Comments after deleting strings with '!' char:");
         for (String str : secondDelRezults) {
             System.out.println(str);
         }

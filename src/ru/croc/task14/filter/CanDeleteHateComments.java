@@ -5,7 +5,7 @@ import java.util.Set;
 import java.util.function.Predicate;
 
 // Delete all hate string comments
-public final class CanDeleteHateComments implements BlackListFilter<String> {
+public final class CanDeleteHateComments {
     public List<String> deleteHateComments(List<String> comments, Set<String> blackList) {
         BlackListFilter<String> filter = new BlackListFilter<>() {};
 
