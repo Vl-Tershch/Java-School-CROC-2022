@@ -1,8 +1,8 @@
-package task17.shop;
+package ru.croc.task17.shop;
 
-import task17.shop.objects.Order;
-import task17.shop.objects.Product;
-import task17.shop.objects.User;
+import ru.croc.task17.shop.objects.Order;
+import ru.croc.task17.shop.objects.Product;
+import ru.croc.task17.shop.objects.User;
 import java.sql.*;
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class ShopDatabaseLogic {
             statement.execute("create table orders(id integer primary key not null, user_id integer not null," +
                     " product_id integer not null, foreign key (user_id) references users(id), " +
                     "foreign key (product_id) references products(id))");
-            System.out.println("Succesful created tables in database!");
+            System.out.println("[TRANSACTION]: Successful created tables in database!\n");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -34,21 +34,22 @@ public class ShopDatabaseLogic {
         updateOrders(list.get(2));
     }
 
-    public void updateUsers(List<User> set) {
+    public void updateUsers(List<User> list) {
         try (Statement statement = getConnection().createStatement()) {
-            for (User user : set) {
+            for (User user : list) {
                 String sqlUsers = "insert into users(id, name) values (" + user.getId() + ",'" + user.getName() + "')";
                 statement.execute(sqlUsers);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        System.out.println("Users update success!");
+        System.out.println("[TRANSACTION]: Users update success!");
+        System.out.println("[USERS DATA]: " + list + '\n');
     }
 
-    public void updateProducts(List<Product> set) {
+    public void updateProducts(List<Product> list) {
         try (Statement statement = getConnection().createStatement()) {
-            for (Product product : set) {
+            for (Product product : list) {
                 String sqlProducts = "insert into products(id, article, name, price) values (" + product.getId() + ",'"
                         + product.getArcticle() + "','" + product.getName() + "'," + product.getPrice() + ")";
                 statement.execute(sqlProducts);
@@ -56,12 +57,13 @@ public class ShopDatabaseLogic {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        System.out.println("Products update success!");
+        System.out.println("[TRANSACTION]: Products update success!");
+        System.out.println("[PRODUCTS DATA]: " + list +'\n');
     }
 
-    public void updateOrders(List<Order> set) {
+    public void updateOrders(List<Order> list) {
         try (Statement statement = getConnection().createStatement()) {
-            for (Order order : set) {
+            for (Order order : list) {
                 String sqlOrders = "insert into orders(id, user_id, product_id) values (" + order.getId() + "," +
                         order.getUserid() + "," + order.getProductId() + ")";
                 statement.execute(sqlOrders);
@@ -69,7 +71,8 @@ public class ShopDatabaseLogic {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        System.out.println("Orders update success!");
+        System.out.println("[TRANSACTION]: Orders update success!");
+        System.out.println("[ORDERS DATA]: " + list + '\n');
     }
 
     public Connection getConnection() {

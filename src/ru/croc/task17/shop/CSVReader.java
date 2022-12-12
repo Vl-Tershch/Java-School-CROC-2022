@@ -1,8 +1,8 @@
-package task17.shop;
+package ru.croc.task17.shop;
 
-import task17.shop.objects.Order;
-import task17.shop.objects.Product;
-import task17.shop.objects.User;
+import ru.croc.task17.shop.objects.Order;
+import ru.croc.task17.shop.objects.Product;
+import ru.croc.task17.shop.objects.User;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

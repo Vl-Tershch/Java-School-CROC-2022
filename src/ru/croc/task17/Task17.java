@@ -1,6 +1,6 @@
-package task17;
+package ru.croc.task17;
 
-import task17.shop.ShopDatabaseLogic;
+import ru.croc.task17.shop.ShopDatabaseLogic;
 import java.sql.*;
 
 public class Task17 {

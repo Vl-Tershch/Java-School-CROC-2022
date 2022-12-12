@@ -1,4 +1,4 @@
-package task17.shop.objects;
+package ru.croc.task17.shop.objects;
 
 public class Product {
     private Integer id;
