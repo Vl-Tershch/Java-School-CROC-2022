@@ -1,5 +1,6 @@
 package ru.croc.task17.shop;
 
+import ru.croc.task17.shop.objects.DatabaseData;
 import ru.croc.task17.shop.objects.Order;
 import ru.croc.task17.shop.objects.Product;
 import ru.croc.task17.shop.objects.User;
@@ -10,8 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class CSVReader {
-    public static List<List> createLists(String csvPath) {
-        List<List> rezultData = new ArrayList<>();
+    public static DatabaseData createLists(String csvPath) {
+        ArrayList<Object>[] rezultData = new ArrayList[3];
         List<User> userEntries = new ArrayList<>();
         List<Product> productEntries = new ArrayList<>();
         List<Order> orderEntries = new ArrayList<>();
@@ -35,11 +36,11 @@ public final class CSVReader {
                             .findFirst().get().getId();
                     existUser = true;
                 }
-                if (productEntries.stream().noneMatch(o -> o.getName().equals(values[3]))) {
+                if (productEntries.stream().noneMatch(o -> o.getArcticle().equals(values[2]))) {
                     productEntries.add(new Product(productSeq, values[2], values[3], Integer.parseInt(values[4])));
                     productSeq += 1;
                 } else {
-                    existProductSeq = productEntries.stream().filter(o -> o.getName().equals(values[3])).findFirst()
+                    existProductSeq = productEntries.stream().filter(o -> o.getArcticle().equals(values[2])).findFirst()
                             .get().getId();
                     existProduct = true;
                 }
@@ -60,9 +61,6 @@ public final class CSVReader {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        rezultData.add(userEntries);
-        rezultData.add(productEntries);
-        rezultData.add(orderEntries);
-        return rezultData;
+        return new DatabaseData(userEntries, productEntries, orderEntries);
     }
 }

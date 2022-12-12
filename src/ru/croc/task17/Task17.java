@@ -10,6 +10,7 @@ public class Task17 {
             shopDatabaseLogic.createTables();
             shopDatabaseLogic.updateTables(args[0]);
             System.out.println("[RESULT]: Successful added data to database!");
+            shopDatabaseLogic.printDatabase();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
