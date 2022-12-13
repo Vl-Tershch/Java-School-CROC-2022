@@ -2,12 +2,12 @@ package ru.croc.task17.shop.objects;
 
 public class Order {
     Integer id;
-    Integer userid;
+    Integer userId;
     Integer productId;
 
-    public Order(Integer id, Integer userid, Integer productId) {
+    public Order(Integer id, Integer userId, Integer productId) {
         this.id = id;
-        this.userid = userid;
+        this.userId = userId;
         this.productId = productId;
     }
 
@@ -19,12 +19,12 @@ public class Order {
         this.id = id;
     }
 
-    public Integer getUserid() {
-        return userid;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUserid(Integer userid) {
-        this.userid = userid;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     public Integer getProductId() {
@@ -43,14 +43,14 @@ public class Order {
         }
 
         if (!id.equals(order.id)) return false;
-        if (!userid.equals(order.userid)) return false;
+        if (!userId.equals(order.userId)) return false;
         return productId.equals(order.productId);
     }
 
     @Override
     public int hashCode() {
         int result = id.hashCode();
-        result = 31 * result + userid.hashCode();
+        result = 31 * result + userId.hashCode();
         result = 31 * result + productId.hashCode();
         return result;
     }
@@ -59,7 +59,7 @@ public class Order {
     public String toString() {
         return "Order{" +
                 "id=" + id +
-                ", userid=" + userid +
+                ", userid=" + userId +
                 ", productId=" + productId +
                 '}';
     }
