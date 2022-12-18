@@ -1,42 +1,37 @@
 package ru.croc.task16.taxi.models;
 
-import java.util.ArrayList;
-import java.util.List;
+import ru.croc.task16.taxi.enums.CarClass;
+import ru.croc.task16.taxi.enums.CarWish;
+import java.util.HashSet;
+import java.util.Set;
 
 // Client of TaxiPark
 public class Client {
-    private Point coordinates;
-    private String carClass;
-    private List<String> wishes;
+    private final Point coordinates;
+    private final CarClass carClass;
+    private final Set<CarWish> wishes;
 
-    public Client(Point coordinates, String carClass, List<String> wishes) {
+    public Client(Point coordinates, String carClass, Set<String> wishes) {
+        Set<CarWish> carWishes = new HashSet<>();
         this.coordinates = coordinates;
-        this.carClass = carClass;
-        this.wishes = wishes;
+        this.carClass = CarClass.get(carClass);
+
+        for (String wish : wishes) {
+            carWishes.add(CarWish.get(wish));
+        }
+        this.wishes = carWishes;
     }
 
     public Point getCoordinates() {
         return coordinates;
     }
 
-    public void setCoordinates(Point coordinates) {
-        this.coordinates = coordinates;
-    }
-
-    public String getCarClass() {
+    public CarClass getCarClass() {
         return carClass;
     }
 
-    public void setCarClass(String carClass) {
-        this.carClass = carClass;
-    }
-
-    public List<String> getWishes() {
-        return new ArrayList<>(this.wishes);
-    }
-
-    public void setWishes(List<String> wishes) {
-        this.wishes = wishes;
+    public Set<CarWish> getWishes() {
+        return this.wishes;
     }
 
     @Override

@@ -8,7 +8,7 @@ import java.util.List;
 
 // Our taxi park with drivers
 public class TaxiPark {
-    private List<Driver> taxiDrivers;
+    private final List<Driver> taxiDrivers;
 
     public TaxiPark(List<Driver> taxiDrivers) {
         if (taxiDrivers.isEmpty()) {
@@ -21,13 +21,9 @@ public class TaxiPark {
         ArrayList<Driver> allDrivers = new ArrayList<>(getTaxiDrivers());
         allDrivers.sort(Comparator.comparingDouble(d -> d.calculateDistanceTo(client)));
         for (Driver driver : allDrivers) {
-            if (driver.getCarClass().equals(client.getCarClass().toLowerCase())) {
-                int countWishes = 0;
-                for (String wish : client.getWishes()) {
-                    if (driver.getWishes().contains(wish)) {
-                        countWishes += 1;
-                    }
-                }
+            if (driver.getCarClass().equals(client.getCarClass())) {
+                long countWishes = driver.getWishes().stream().filter(carWish ->
+                        client.getWishes().contains((carWish))).count();
                 if (countWishes == client.getWishes().size()) {
                     return driver;
                 }
@@ -38,10 +34,6 @@ public class TaxiPark {
 
     public List<Driver> getTaxiDrivers() {
         return new ArrayList<>(this.taxiDrivers);
-    }
-
-    public void setTaxiDrivers(List<Driver> taxiDrivers) {
-        this.taxiDrivers = taxiDrivers;
     }
 
     @Override

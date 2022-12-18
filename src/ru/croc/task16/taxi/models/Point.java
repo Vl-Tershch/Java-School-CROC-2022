@@ -1,8 +1,9 @@
 package ru.croc.task16.taxi.models;
 
+// Coordinates of user & driver
 public class Point {
-    Double x;
-    Double y;
+    private final Double x;
+    private final Double y;
 
     public Point(Double x, Double y) {
         this.x = x;
@@ -13,16 +14,8 @@ public class Point {
         return this.x;
     }
 
-    public void setX(Double x) {
-        this.x = x;
-    }
-
     public Double getY() {
         return this.y;
-    }
-
-    public void setY(Double y) {
-        this.y = y;
     }
 
     @Override

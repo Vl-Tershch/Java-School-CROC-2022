@@ -1,25 +1,32 @@
 package ru.croc.task16.taxi.models;
 
-import java.util.ArrayList;
-import java.util.List;
+import ru.croc.task16.taxi.enums.CarClass;
+import ru.croc.task16.taxi.enums.CarWish;
+import java.util.HashSet;
+import java.util.Set;
 
 // Driver in TaxiPark
 public class Driver {
-    private String fio;
-    private String carClass;
-    private String carNumber;
-    private String telephoneNumber;
-    private Point coordinates;
-    private List<String> wishes;
+    private final String fio;
+    private final CarClass carClass;
+    private final String carNumber;
+    private final String telephoneNumber;
+    private final Point coordinates;
+    private final Set<CarWish> wishes;
 
     public Driver(String fio, String carClass, String carNumber,
-                  String telephoneNumber, Point coordinates, List<String> wishes) {
+                  String telephoneNumber, Point coordinates, Set<String> wishes) {
+        Set<CarWish> carWishes = new HashSet<>();
         this.fio = fio;
-        this.carClass = carClass;
+        this.carClass = CarClass.get(carClass);
         this.carNumber = carNumber;
         this.telephoneNumber = telephoneNumber;
         this.coordinates = coordinates;
-        this.wishes = wishes;
+
+        for (String wish : wishes) {
+            carWishes.add(CarWish.get(wish));
+        }
+        this.wishes = new HashSet<>(carWishes);
     }
 
     public double calculateDistanceTo(Client client) {
@@ -31,52 +38,28 @@ public class Driver {
         return this.fio;
     }
 
-    public void setFio(String fio) {
-        this.fio = fio;
-    }
-
-    public String getCarClass() {
+    public CarClass getCarClass() {
         return this.carClass;
-    }
-
-    public void setCarClass(String carClass) {
-        this.carClass = carClass;
     }
 
     public String getCarNumber() {
         return this.carNumber;
     }
 
-    public void setCarNumber(String carNumber) {
-        this.carNumber = carNumber;
-    }
-
     public String getTelephoneNumber() {
         return this.telephoneNumber;
-    }
-
-    public void setTelephoneNumber(String telephoneNumber) {
-        this.telephoneNumber = telephoneNumber;
     }
 
     public Point getCoordinates() {
         return this.coordinates;
     }
 
-    public void setCoordinates(Point coordinates) {
-        this.coordinates = coordinates;
-    }
-
-    public List<String> getWishes() {
-        return new ArrayList<>(this.wishes);
-    }
-
-    public void setWishes(List<String> wishes) {
-        this.wishes = wishes;
+    public Set<CarWish> getWishes() {
+        return this.wishes;
     }
 
     @Override
     public String toString() {
-        return  fio + " - carNumber:" + carNumber + " - telephoneNumber:" + telephoneNumber;
+        return  "U-" +fio +  "-" + telephoneNumber;
     }
 }
