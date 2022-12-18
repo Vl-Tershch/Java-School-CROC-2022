@@ -2,8 +2,6 @@ package ru.croc.finaltask.school;
 
 import ru.croc.finaltask.school.objects.User;
 import ru.croc.finaltask.school.objects.Word;
-
-
 import java.util.List;
 
 public class School {

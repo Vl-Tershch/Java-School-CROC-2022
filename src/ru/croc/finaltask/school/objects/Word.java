@@ -37,12 +37,10 @@ public class Word {
 
     @Override
     public String toString() {
-        return "Word{" +
-                "id=" + id +
-                ", userId=" + userId +
-                ", word='" + word + '\'' +
-                ", translate='" + translate + '\'' +
-                ", learned=" + learned +
-                '}';
+        return "Слово " +
+                ": оригинал='" + word + '\'' +
+                ", перевод='" + translate + '\'' +
+                ", изучено=" + learned +
+                ';';
     }
 }

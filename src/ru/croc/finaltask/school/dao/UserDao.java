@@ -10,7 +10,8 @@ public final class UserDao {
     }
 
     public User findUser(String userName) {
-        try (PreparedStatement user = this.connection.prepareStatement("select * from users where users.username=?")) {
+        try (PreparedStatement user = this.connection.prepareStatement("select * from user where " +
+                "user.username=?")) {
             user.setString(1, userName);
             try (ResultSet resultSet = user.executeQuery()) {
                 if (resultSet.next()) {
@@ -24,33 +25,19 @@ public final class UserDao {
     }
 
     public User createUser(String userName, String password) {
-        User existsUser = findUser(userName);
-        if (existsUser == null) {
-            Integer newId = findMaxId();
-            String sqlUser = "insert into users(id, username, password) values (" + (newId + 1) + ",'" + userName +
+        if (findUser(userName) == null) {
+            String sqlUser = "insert into user(username, password) values ('" + userName +
                     "','" + password + "')";
             try (Statement statement = this.connection.createStatement()) {
                 statement.execute(sqlUser);
-                System.out.println("Вы зарегистрировались!");
+                System.out.println("[SYS]: Вы зарегистрировались!");
                 return findUser(userName);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
         } else {
-            System.out.println("Данный пользователь уже существует в системе!");
+            System.out.println("[SYS]: Данный пользователь уже существует в системе!");
         }
         return null;
-    }
-
-    public int findMaxId() {
-        try (PreparedStatement order = connection.prepareStatement("select MAX(id) AS max_id from users")) {
-            try (ResultSet resultSet = order.executeQuery()) {
-                if (resultSet.next()) {
-                    return resultSet.getInt("max_id");
-                } else return 0;
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
     }
 }
